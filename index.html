@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vimax</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+    :root {
+      --clr-bg: #ffffff;
+      --clr-text: #374151;
+      --clr-text-muted: #6b7280;
+      --clr-primary: #111827;
+      --clr-primary-light: #4b5563;
+      --clr-accent: #000000;
+      --clr-accent-hover: #374151;
+      --clr-shadow: rgba(0, 0, 0, 0.06);
+      --radius: 0.75rem;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--clr-bg);
+      color: var(--clr-text);
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--clr-bg);
+      box-shadow: 0 1px 8px var(--clr-shadow);
+      z-index: 100;
+      padding: 1rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.75rem;
+      color: var(--clr-primary);
+      user-select: none;
+      letter-spacing: -0.03em;
+      cursor: default;
+      white-space: nowrap;
+    }
+
+    .search-bar {
+      flex-grow: 1;
+      max-width: 400px;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 0.5rem 1rem;
+      border: 2px solid var(--clr-primary-light);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      color: var(--clr-text);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .search-bar input::placeholder {
+      color: var(--clr-text-muted);
+    }
+
+    .search-bar input:focus {
+      outline: none;
+      border-color: var(--clr-accent);
+      box-shadow: 0 0 5px var(--clr-accent);
+    }
+
+    main {
+      flex-grow: 1;
+      padding: 4rem 1rem 6rem;
+      background: var(--clr-bg);
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .hero {
+      max-width: 720px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-weight: 800;
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      color: var(--clr-primary);
+      margin: 0 0 0.5rem;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      font-weight: 400;
+      font-size: 1.25rem;
+      color: var(--clr-text-muted);
+      margin: 0;
+    }
+
+    .login-form {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #f9fafb;
+      border-radius: var(--radius);
+      box-shadow: 0 12px 24px var(--clr-shadow);
+      padding: 2rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      transition: box-shadow var(--transition);
+    }
+
+    .login-form h2 {
+      font-weight: 700;
+      font-size: 2rem;
+      color: var(--clr-primary);
+      margin: 0 0 1rem 0;
+      user-select: none;
+      text-align: center;
+    }
+
+    .login-form label {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--clr-primary-light);
+      margin-bottom: 0.25rem;
+      display: block;
+      user-select: none;
+    }
+
+    .login-form input {
+      border-radius: var(--radius);
+      border: 1.5px solid #d1d5db;
+      padding: 0.75rem 1rem;
+      font-family: inherit;
+      font-size: 1.125rem;
+      line-height: 1.5;
+      color: var(--clr-text);
+      transition: border-color var(--transition);
+    }
+
+    .login-form input:focus {
+      outline: none;
+      border-color: var(--clr-accent);
+      box-shadow: 0 0 5px var(--clr-accent);
+    }
+
+    .login-form button {
+      background-color: var(--clr-accent);
+      border: none;
+      color: white;
+      font-weight: 700;
+      padding: 0.75rem 2.5rem;
+      font-size: 1.125rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: background-color var(--transition), box-shadow var(--transition);
+      user-select: none;
+      margin-top: 1rem;
+    }
+
+    .login-form button:hover,
+    .login-form button:focus {
+      background-color: var(--clr-accent-hover);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+      outline: none;
+    }
+
+    .post-form {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #f9fafb;
+      border-radius: var(--radius);
+      box-shadow: 0 12px 24px var(--clr-shadow);
+      padding: 2rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      transition: box-shadow var(--transition);
+    }
+
+    .post-form:focus-within {
+      box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+    }
+
+    .post-form h2 {
+      font-weight: 700;
+      font-size: 2rem;
+      color: var(--clr-primary);
+      margin: 0 0 1rem 0;
+      user-select: none;
+    }
+
+    .post-form label {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--clr-primary-light);
+      margin-bottom: 0.25rem;
+      display: block;
+      user-select: none;
+    }
+
+    .post-form textarea {
+      resize: vertical;
+      min-height: 4rem;
+      border-radius: var(--radius);
+      border: 1.5px solid #d1d5db;
+      padding: 0.75rem 1rem;
+      font-family: inherit;
+      font-size: 1.125rem;
+      line-height: 1.5;
+      color: var(--clr-text);
+      transition: border-color var(--transition);
+      font-weight: 400;
+      font-smooth: always;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .post-form textarea::placeholder {
+      color: #9ca3af;
+      font-weight: 400;
+    }
+
+    .post-form textarea:focus {
+      outline: none;
+      border-color: var(--clr-accent);
+      box-shadow: 0 0 5px var(--clr-accent);
+    }
+
+    .file-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .post-form input[type="file"] {
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--clr-primary-light);
+      cursor: pointer;
+      border-radius: var(--radius);
+      border: 1.5px solid #d1d5db;
+      padding: 0.35rem 1rem;
+      transition: border-color var(--transition);
+    }
+
+    .post-form input[type="file"]:hover,
+    .post-form input[type="file"]:focus {
+      border-color: var(--clr-accent);
+      outline: none;
+    }
+
+    .post-form button {
+      align-self: flex-start;
+      background-color: var(--clr-accent);
+      border: none;
+      color: white;
+      font-weight: 700;
+      padding: 0.75rem 2.5rem;
+      font-size: 1.125rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: background-color var(--transition), box-shadow var(--transition);
+      user-select: none;
+    }
+
+    .post-form button:hover,
+    .post-form button:focus {
+      background-color: var(--clr-accent-hover);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+      outline: none;
+    }
+
+    .posts {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .post-card {
+      background: #f9fafb;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 20px var(--clr-shadow);
+      padding: 1.5rem 1.75rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      transition: transform 0.3s ease;
+    }
+    .post-card:focus-within,
+    .post-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.12);
+      outline: none;
+    }
+
+    .post-video, .post-image {
+      width: 100%;
+      max-height: 420px;
+      border-radius: var(--radius);
+      background: black;
+      object-fit: contain;
+      box-shadow: 0 0 18px rgba(0,0,0,0.22);
+      cursor: pointer;
+      user-select:none;
+      transition: filter var(--transition);
+    }
+    .post-video:hover,
+    .post-video:focus,
+    .post-image:hover,
+    .post-image:focus {
+      filter: brightness(1.1);
+      outline: none;
+    }
+
+    .post-text {
+      font-size: 1.125rem;
+      color: var(--clr-primary-light);
+      font-weight: 400;
+      white-space: pre-line;
+      user-select: text;
+      min-height: 48px;
+    }
+
+    .post-actions {
+      display: flex;
+      gap: 2rem;
+      user-select: none;
+      align-items: center;
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--clr-text-muted);
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 1.1rem;
+      padding: 0.15rem 0.3rem;
+      border-radius: var(--radius);
+      transition: color var(--transition), background-color var(--transition), transform var(--transition);
+      user-select: none;
+    }
+    .action-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+      transition: transform 0.3s ease;
+      user-select: none;
+    }
+    .action-btn:hover,
+    .action-btn:focus-visible {
+      color: var(--clr-accent);
+      background-color: rgba(0,0,0,0.05);
+      outline: none;
+      transform: scale(1.1);
+    }
+
+    .action-btn:focus-visible {
+      outline: 2px solid var(--clr-accent);
+      outline-offset: 2px;
+    }
+
+    .action-btn.liked {
+      color: var(--clr-accent);
+      font-weight: 700;
+      background-color: rgba(0,0,0,0.08);
+      transform: scale(1.2);
+    }
+    .action-btn.liked svg {
+      transform: scale(1.3);
+    }
+
+    .comments-section {
+      border-top: 1px solid #e5e7eb;
+      padding-top: 1rem;
+      max-height: 180px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      user-select: text;
+    }
+
+    .comment {
+      font-size: 1rem;
+      color: var(--clr-text-muted);
+      margin-bottom: 0;
+      line-height: 1.3;
+    }
+
+    .comment .user {
+      font-weight: 600;
+      color: var(--clr-primary-light);
+      margin-right: 0.4rem;
+      user-select: text;
+    }
+
+    .comment-input-container {
+      margin-top: 0.75rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+    .comment-input {
+      flex-grow: 1;
+      border-radius: var(--radius);
+      border: 1.5px solid #d1d5db;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      color: var(--clr-text);
+      font-weight: 400;
+      font-family: inherit;
+      transition: border-color var(--transition);
+    }
+    .comment-input::placeholder {
+      color: #9ca3af;
+    }
+    .comment-input:focus {
+      outline: none;
+      border-color: var(--clr-accent);
+      box-shadow: 0 0 5px var(--clr-accent);
+    }
+
+    .comment-submit {
+      background-color: var(--clr-accent);
+      border: none;
+      color: white;
+      border-radius: var(--radius);
+      padding: 0.55rem 1.25rem;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: background-color var(--transition), box-shadow var(--transition);
+      user-select: none;
+    }
+    .comment-submit:hover,
+    .comment-submit:focus {
+      background-color: var(--clr-accent-hover);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+      outline: none;
+    }
+
+    /* Empty state for posts */
+    .empty-posts {
+      color: #9ca3af;
+      text-align: center;
+      font-size: 1.125rem;
+      user-select: none;
+      padding: 3rem 0;
+    }
+
+    /* Accessibility helper: screen reader only text */
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0,0,0,0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 3rem 1rem 4rem;
+      }
+      .post-form, .posts {
+        max-width: 100%;
+      }
+      .post-form button, .comment-submit {
+        width: 100%;
+        text-align: center;
+      }
+      .post-actions {
+        gap: 1.2rem;
+      }
+      .action-btn {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header role="banner">
+    <div class="container">
+      <nav role="navigation" aria-label="Primary">
+        <div class="logo" aria-label="Vimax">Vimax</div>
+        <div class="search-bar">
+          <label for="searchInput" class="sr-only">Search posts</label>
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Search posts..."
+            autocomplete="off"
+            aria-describedby="searchDesc"
+            aria-controls="postsContainer"
+            aria-live="polite"
+          />
+          <div id="searchDesc" class="sr-only">Filter posts by post text content or username</div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero" aria-label="Hero section with app title and description">
+      <h1></h1>
+      <p></p>
+    </section>
+    
+ <section aria-labelledby="loginFormTitle">
+  <form id="loginForm" class="login-form" aria-label="User  login">
+    <h2 id="loginFormTitle">Log into your account</h2>
+    <button type="button" id="googleLogin">Login with Google</button>
+    <div style="text-align: center;">OR</div>
+    <label for="username">Email</label>
+    <input type="email" id="username" placeholder="Enter your email address" required />
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="Enter password" required />
+    
+    <div class="remember-me">
+      <input type="checkbox" id="rememberMe" />
+      <label for="rememberMe">Remember me</label>
+    </div>
+    
+    <a href="#" id="forgotPassword">Forgot Password?</a>
+    
+    <button type="submit">Login</button>
+    
+    <div style="text-align: center; margin-top: 1rem;">
+      <span>Don't have an account?</span>
+      <a href="#" id="registerLink">Register</a>
+    </div>
+  </form>
+</section>
+
+        
